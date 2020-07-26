@@ -1,0 +1,137 @@
+{
+  "kind": "Template",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "sonarqube-openshift-template",
+    "description": "SonarQube template for OpenShift",
+    "iconClass": "stackoverflow",
+    "tags": "sonarqube,sonar,codecoverage,coverage,security"
+  },
+  "objects": [
+    {
+      "kind": "BuildConfig",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "sonarqube-openshift-bc",
+        "labels": {
+          "application": "sonarqube-openshift"
+        }
+      },
+      "spec": {
+        "type": "Git",
+        "git": {
+          "uri": "./",
+          "ref": "master"
+        },
+        "contextDir": ""
+      },
+      "strategy": {
+        "type": "Docker",
+        "sourceStrategy": {
+          "from": {
+            "kind": "ImageStreamTag",
+            "namespace": "sonarqube-openshift",
+            "name": "sonarqube-openshift:7"
+          },
+          "output": {
+            "to": {
+              "kind": "ImageStreamTag",
+              "name": "sonarqube-openshift:7"
+            }
+          },
+          "triggers": [
+            {
+              "type": "ImageChange",
+              "imageChange": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "kind": "ImageStream",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "sonarqube-openshift-is",
+        "labels": {
+          "application": "sonarqube-openshift"
+        }
+      },
+      "spec": {
+        "dockerImageRepository": "",
+        "tags": [
+          {
+            "name": "7"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "DeploymentConfig",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "sonarqube-openshift-dc",
+        "labels": {
+          "deploymentConfig": "sonarqube-openshift-dc",
+          "application": "sonarqube-openshift"
+        }
+      },
+      "spec": {
+        "replicas": 1,
+        "selector": {
+          "deploymentConfig": "sonarqube-openshift-dc"
+        },
+        "strategy": {
+          "type": "Recreate"
+        },
+        "template": {
+          "metadata": {
+            "labels": {
+              "deploymentConfig": "sonarqube-openshift-dc",
+              "application": "sonarqube-openshift"
+            },
+            "name": "sonarqube-openshift-temp"
+          },
+          "spec": {
+            "containers": [
+              {
+                "name": "sonarqube-openshift",
+                "image": "sonarqube-openshift",
+                "imagePullPolicy": "Always",
+                "env": [
+                  {
+                    "name": "SONARQUBE_DB_USER",
+                    "value": "sonarqube"
+                  },
+                  {
+                    "name": "SONARQUBE_DB_PASSWORD",
+                    "value": "sonarqube"
+                  },
+                  {
+                    "name": "SONARQUBE_DB_NAME",
+                    "value": "sonarqube"
+                  }
+                ],
+                "ports": [
+                  {
+                    "name": "sonarqube-http",
+                    "containerPort": 9000,
+                    "protocol": "TCP"
+                  }
+                ],
+                "resources": {},
+                "terminationMessagePath": "",
+                "securityContext": {
+                  "capabilities": {},
+                  "privileged": false
+                }
+              }
+            ],
+            "restartPolicy": "Always",
+            "dnsPolicy": "ClusterFirst"
+          }
+        }
+      }
+    }
+  ]
+}

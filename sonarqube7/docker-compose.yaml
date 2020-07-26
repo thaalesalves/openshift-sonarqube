@@ -1,0 +1,29 @@
+version: "3"
+networks:
+  ? sonarqube_net
+services:
+  postgresql:
+    container_name: openshift-postgresql
+    image: docker.io/postgres:10.13
+    hostname: postgresql
+    ports:
+      - '5432:5432'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - POSTGRES_USER=sonarqube
+      - POSTGRES_PASSWORD=sonarqube
+      - POSTGRES_DB=sonarqube
+    networks:
+      -  sonarqube_net
+  sonarqube:
+    container_name: openshift-sonarqube
+    image: openshift-sonarqube:7
+    hostname: sonarqube
+    ports:
+      - '9000:9000'
+    environment:
+      - SONARQUBE_DB_USER=sonarqube
+      - SONARQUBE_DB_PASSWORD=sonarqube
+      - SONARQUBE_DB_NAME=sonarqube
+    networks:
+      -  sonarqube_net
