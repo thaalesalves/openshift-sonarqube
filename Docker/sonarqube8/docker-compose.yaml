@@ -17,7 +17,7 @@ services:
       -  sonarqube_net
   sonarqube:
     container_name: openshift-sonarqube
-    image: openshift-sonarqube:7
+    image: openshift-sonarqube:8
     hostname: sonarqube
     ports:
       - '9000:9000'
