@@ -1,5 +1,0 @@
-alias l='ls -l'
-alias ll='ls -al'
-alias ls='ls -a'
-alias tailf='tail -f'
-alias sonar_logs='tail -f /opt/sonarqube/logs/sonar.log'

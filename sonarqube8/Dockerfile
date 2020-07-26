@@ -15,7 +15,7 @@ ENV SONARQUBE_VERSION="8.4.1" \
     LC_ALL="en_US.UTF-8" \
     PATH="$PATH:/opt/sonarqube/bin/linux-x86-64"
 
-COPY [ "scripts/entrypoint.sh", "scripts/commands", "/" ]
+COPY [ "scripts/entrypoint.sh", "/opt" ]
 RUN yum update -y && yum upgrade -y && \
     yum install -y sudo emacs curl wget unzip java-11-openjdk-devel java-11-openjdk && \
     yum install -y glibc-locale-source glibc-langpack-en && \
@@ -27,11 +27,6 @@ RUN yum update -y && yum upgrade -y && \
     unzip /tmp/sonarqube-8.4.1.35646.zip -d /opt && \
     mv /opt/sonarqube-8.4.1.35646 /opt/sonarqube && \
     sed -i -e 's/\s*Defaults\s*secure_path\s*=/# Defaults secure_path=/' /etc/sudoers && \
-    echo "sonar.jdbc.username=$SONAR_JDBC_USERNAME" >> /opt/sonarqube/conf/sonar.properties && \
-    echo "sonar.jdbc.password=$SONAR_JDBC_PASSWORD" >> /opt/sonarqube/conf/sonar.properties && \
-    echo "sonar.jdbc.url=$SONAR_JDBC_URL" >> /opt/sonarqube/conf/sonar.properties && \
-    echo "sonar.path.data=$SONAR_ELASTISEARCH_DIR" >> /opt/sonarqube/conf/sonar.properties && \
-    echo "sonar.path.temp=$SONAR_TEMP_DIR" >> /opt/sonarqube/conf/sonar.properties && \
     echo 'sonarqube ALL=NOPASSWD: ALL' >> /etc/sudoers && \
     useradd sonarqube -u 1001 && \
     chown -R sonarqube /opt && \
@@ -39,9 +34,8 @@ RUN yum update -y && yum upgrade -y && \
     chmod -R g=u /opt && \
     chown -R sonarqube /var/share/sonarqube && \
     chgrp -R 0 /var/share/sonarqube && \
-    chmod -R g=u /var/share/sonarqube && \
-    cat /commands >> /home/sonarqube/.bashrc
+    chmod -R g=u /var/share/sonarqube
 
-USER 1001
 EXPOSE 9000
-ENTRYPOINT [ "/entrypoint.sh" ]
+ENTRYPOINT [ "/opt/entrypoint.sh" ]
+USER 1001
