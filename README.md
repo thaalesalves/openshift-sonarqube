@@ -1,11 +1,11 @@
 # SonarQube for OpenShift
-This is repository contains SonarQube images optimized for OpenShift, so you can use to learn how Docker and OpenShift works, or even use it for actual code coverage in real projects. It uses PostgreSQL as the default DBMS, so if you'd like to use another database for persistence, feel free to make a pull request with a new Dockerfile set up for another DBMS. 
+This is repository contains two SonarQube images optimized for OpenShift that you can use to learn how Docker and OpenShift work, or even use it for actual code coverage in real projects. It uses PostgreSQL as the default DBMS, so if you'd like to use another database for persistence, feel free to make a pull request with a new Dockerfile set up for a different DBMS. 
 
-## Which Versions are you using?
+## Which versions are you using?
 As of July 2020, the latest versions of SonarQube are its LTS (7.9.3) and the latest version (8.4.1). This repo contains a Dockerfile for both, and it might be updated in the future when new versions of SonarQube are released. 
 
 ## What is this for?
-Since there are no official ways of deploying SonarQube on OpenShift, I decided to create this project, that creates an image from scratch using CentOS 8 and installs SonarQube. This will allow projects to be tested against bugs, code smells and security flaws on OpenShift. Note that this repo creates an image with the community version of SonarQube, so checkout their licenses before using this with enterprise code. If you have a license for SonarQube, you can use my Dockerfile to create private images for your company to run on OpenShift. Just don't share these private images with anyone (well, I don't think I have to say this, but...).
+Since there are no official ways of deploying SonarQube on OpenShift, I decided to create this project. Images are created from scratch using CentOS 8, and SonarQube is installed and set up. This will allow projects to be tested against bugs, code smells and security flaws on OpenShift. Note that this repo creates an image with the community version of SonarQube, meant for single developers only. For enterprise licenses, check their website. If you own a license, you can adapt this project's Dockerfile to deploy an image for you, but remember not to share the adapted image with anyone that is not part of your company.
 
 ## Do I actually need an OpenShift cluster for this?
 No. Although these images were created with OpenShift in mind, you can run them locally using the ```docker-compose.yaml``` file I provided for each image, that starts a container with one of the images in this repo and pulls the official PostgreSQL 10.13 image from Docker Hub to run with it. 
