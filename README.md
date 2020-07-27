@@ -44,7 +44,10 @@ docker-compose up
   
 ### Step-by-step
 ```bash
-# Note: these instructions are not validated yet. This is just a placeholder. I'm still working on the project. You can still use Docker to build and run the image though, without OpenShift. Just follow the other set of instructions and you'll be good to go.
+# Note: these instructions are not validated yet. This is just a placeholder. I'm still working on the project. 
+# You can still use Docker to build and run the image though, without OpenShift. 
+# Just follow the other set of instructions and you'll be good to go.
+
 git clone https://github.com/thaalesalves/sonarqube-openshift
 oc login -u your_user https://openshiftaddress.com/
 oc new-project sonarqube
