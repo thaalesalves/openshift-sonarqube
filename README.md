@@ -17,6 +17,15 @@ Because that's how OpenShift works. When using the Docker strategy to create an 
 ### Requirements
 * Docker
 
+### Customization
+You can change database name, user and password, as well the JDBC connection string, by altering some environment variables. These are also the default values used for docker-compose. 
+
+* `SONAR_JDBC_USERNAME`: remote database username. Default value is `sonarqube`.
+* `SONAR_JDBC_PASSWORD`: remote database password. Default value is `sonarqube`.
+* `SONAR_JDBC_URL`: remote database connection string. Default value is set to a PostgreSQL DB: `jdbc:postgresql://postgresql/sonarqube`. That means the database name is `sonarqube` and the hostname is `postgresql`.
+* `SONAR_ELASTISEARCH_DIR`: elasticsearch working directory. Default value is `/var/share/sonarqube/elastisearch`.
+* `SONAR_TEMP_DIR`: default temp dir. Default value is `/var/share/sonarqube/temp`.
+
 ### Step-by-step
 ```bash
 # Clone the repo
