@@ -9,7 +9,7 @@ ENV SONARQUBE_VERSION="8.4.1" \
     SONAR_JDBC_USERNAME=sonarqube \
     SONAR_JDBC_PASSWORD=sonarqube \
     SONAR_JDBC_URL=jdbc:postgresql://postgresql/sonarqube \
-    SONAR_ELASTISEARCH_DIR="/var/share/sonarqube/elastisearch" \
+    SONAR_ELASTICSEARCH_DIR="/var/share/sonarqube/elasticsearch" \
     SONAR_TEMP_DIR="/var/share/sonarqube/temp" \
     SONAR_LOGS="/opt/sonarqube/logs" \
     LC_ALL="en_US.UTF-8" \
@@ -21,7 +21,7 @@ RUN yum update -y && yum upgrade -y && \
     yum install -y glibc-locale-source glibc-langpack-en && \
     dnf install -y @postgresql:10 && \
     localedef -c -f UTF-8 -i en_US en_US.UTF-8 && \
-    mkdir -p /var/share/sonarqube/elastisearch && \
+    mkdir -p /var/share/sonarqube/elasticsearch && \
     mkdir /var/share/sonarqube/temp && \
     wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.4.1.35646.zip -P /tmp && \
     unzip /tmp/sonarqube-8.4.1.35646.zip -d /opt && \
@@ -36,6 +36,7 @@ RUN yum update -y && yum upgrade -y && \
     chgrp -R 0 /var/share/sonarqube && \
     chmod -R g=u /var/share/sonarqube
 
+VOLUME [ "/var/share/sonarqube", "/var/share/sonarqube/elasticsearch", "/var/share/sonarqube/temp" ]
 EXPOSE 9000
 ENTRYPOINT [ "/opt/entrypoint.sh" ]
 USER 1001

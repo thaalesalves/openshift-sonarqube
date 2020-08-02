@@ -23,7 +23,7 @@ You can change database name, user and password, as well the JDBC connection str
 * `SONAR_JDBC_USERNAME`: remote database username. Default value is `sonarqube`.
 * `SONAR_JDBC_PASSWORD`: remote database password. Default value is `sonarqube`.
 * `SONAR_JDBC_URL`: remote database connection string. Default value is set to a PostgreSQL DB: `jdbc:postgresql://postgresql/sonarqube`. That means the database name is `sonarqube` and the hostname is `postgresql`.
-* `SONAR_ELASTISEARCH_DIR`: elasticsearch working directory. Default value is `/var/share/sonarqube/elastisearch`.
+* `SONAR_ELASTICSEARCH_DIR`: elasticsearch working directory. Default value is `/var/share/sonarqube/elasticsearch`.
 * `SONAR_TEMP_DIR`: default temp dir. Default value is `/var/share/sonarqube/temp`.
 
 ### Step-by-step
