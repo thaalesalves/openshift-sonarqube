@@ -3,7 +3,7 @@ networks:
   ? sonarqube_net
 services:
   postgresql:
-    container_name: openshift-postgresql
+    container_name: postgresql
     image: docker.io/postgres:10.13
     hostname: postgresql
     ports:
@@ -15,9 +15,17 @@ services:
       - POSTGRES_DB=sonarqube
     networks:
       -  sonarqube_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sonarqube"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
   sonarqube:
-    container_name: openshift-sonarqube
-    image: openshift-sonarqube:7
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    container_name: sonarqube
+    image: localhost/sonarqube
     hostname: sonarqube
     ports:
       - '9000:9000'
@@ -27,3 +35,8 @@ services:
       - SONARQUBE_DB_NAME=sonarqube
     networks:
       -  sonarqube_net
+    build:
+      dockerfile: Dockerfile
+      context: ./
+      args:
+        - SONARQUBE_VERSION=9.4.0.54424
