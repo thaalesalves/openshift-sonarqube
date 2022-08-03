@@ -37,13 +37,16 @@ cd sonarqube-openshift
 # Build the image - the containers will start automatically
 docker-compose up
 
+# OR (if you're running Podman)
+podman-compose up
+
 # Just wait until it starts. You will be able to access it at http://localhost:9000 with your browser
 # Log in using "admin" as both username and password
 ```
 
-## Running on an OpenShift (or Minishift) cluster
+## Running on OpenShift
 ### Requirements
-* An OpenShift cluster (or a MiniShift VM)
+* An OpenShift cluster (or a local installation of OKD)
 * A user with permissions to create a project and an application
 * The resources provided in this repo
 * The IP (or DNS) of the cluster you'll be logging in to
