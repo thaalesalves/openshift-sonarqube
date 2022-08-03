@@ -16,6 +16,7 @@ No. Although this image was created with OpenShift in mind, you can run it local
 ## Running locally
 ### Requirements
 * Docker (or Podman)
+* `vm.max_map_count` set to at least 262144 for ElasticSearch
 
 ### Customization
 You can change database name, user and password, as well the JDBC connection string, by altering some environment variables. These are also the default values used for docker-compose.
