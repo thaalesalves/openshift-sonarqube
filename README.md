@@ -1,5 +1,5 @@
 # SonarQube for OpenShift
-This repository contains two SonarQube images optimized for OpenShift that you can use to learn how Docker and OpenShift work, or even use it for actual code coverage in real projects. It uses PostgreSQL as the default DBMS, so if you'd like to use another database for persistence, feel free to make a pull request with a new Dockerfile set up for a different DBMS. 
+This repository contains a SonarQube image optimized for OpenShift that you can use to learn how Docker and OpenShift work, or even use it for actual code coverage in real projects. It uses PostgreSQL as the default DBMS, so if you'd like to use another database for persistence, feel free to make a pull request with a new Dockerfile set up for a different DBMS.
 
 ## Which versions are you using?
 The version it uses is up to the developer. By default, project's `Dockerfile` is set to use `8.4.1.35646`, and `docker-compose.yaml` will use `9.4.0.54424`. If you'd like to use a different version, you can check [here](https://binaries.sonarsource.com/?prefix=Distribution/sonarqube/) which versions are available and just change the version tag in the compose file (it ovverides the default definition in the `Dockerfile`).
@@ -18,7 +18,7 @@ No. Although this image was created with OpenShift in mind, you can run it local
 * Docker (or Podman)
 
 ### Customization
-You can change database name, user and password, as well the JDBC connection string, by altering some environment variables. These are also the default values used for docker-compose. 
+You can change database name, user and password, as well the JDBC connection string, by altering some environment variables. These are also the default values used for docker-compose.
 
 * `SONAR_JDBC_USERNAME`: remote database username. Default value is `sonarqube`.
 * `SONAR_JDBC_PASSWORD`: remote database password. Default value is `sonarqube`.
@@ -47,11 +47,11 @@ docker-compose up
 * A user with permissions to create a project and an application
 * The resources provided in this repo
 * The IP (or DNS) of the cluster you'll be logging in to
-  
+
 ### Step-by-step
 ```bash
-# Note: these instructions are not validated yet. This is just a placeholder. I'm still working on the project. 
-# You can still use Docker to build and run the image though, without OpenShift. 
+# Note: these instructions are not validated yet. This is just a placeholder. I'm still working on the project.
+# You can still use Docker to build and run the image though, without OpenShift.
 # Just follow the other set of instructions and you'll be good to go.
 
 git clone https://github.com/thaalesalves/sonarqube-openshift
