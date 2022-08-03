@@ -8,7 +8,7 @@ echo "sonar.path.temp=$SONAR_TEMP_DIR" >> /opt/sonarqube/conf/sonar.properties
 
 sonar.sh start
 echo -e "==========================================================="
-echo -e "SonarQube $SONARQUBE_VERSION is starting!"
+echo -e "SonarQube is starting!"
 echo -e "You may log in to SonarQube once it starts booting up"
 echo -e "Login: admin"
 echo -e "Password: admin"
