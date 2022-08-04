@@ -6,7 +6,7 @@ LABEL maintainer="Thales Alves <thales@thalesalv.es>" \
     io.openshift.expose-services="9000:http" \
     io.openshift.tags="sonarqube,codecoverage,sonar,coverage"
 
-ARG SONARQUBE_VERSION=8.4.1.35646
+ARG SONARQUBE_VERSION=8.9.9.56886
 
 ENV SONAR_JDBC_USERNAME=sonarqube \
     SONAR_JDBC_PASSWORD=sonarqube \

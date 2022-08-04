@@ -2,7 +2,7 @@
 This repository contains a SonarQube image optimized for OpenShift that you can use to learn how Docker and OpenShift work, or even use it for actual code coverage in real projects. It uses PostgreSQL as the default DBMS, so if you'd like to use another database for persistence, feel free to make a pull request with a new Dockerfile set up for a different DBMS.
 
 ## Which versions are you using?
-The version it uses is up to the developer. By default, project's `Dockerfile` is set to use `8.4.1.35646`, and `docker-compose.yaml` will use `9.4.0.54424`. If you'd like to use a different version, you can check [here](https://binaries.sonarsource.com/?prefix=Distribution/sonarqube/) which versions are available and just change the version tag in the compose file (it ovverides the default definition in the `Dockerfile`).
+The version it uses is up to the developer. By default, it is set to use `8.9.9.56886`. If you'd like to use a different version, you can check [here](https://binaries.sonarsource.com/?prefix=Distribution/sonarqube/) which versions are available and just change the version tag in the compose file (for local executions) or in the Dockerfile (for OpenShift). Note that the compose definition overrides the one in the Dockerfile, so you need to change either, but not both.
 
 ### Why are there different versions in the files?
 Because this image will work for both containers on OpenShift or local Docker/Podman containers. If you'd like to use it locally with Compose, change the version in the compose file. If you're going to use and build the image for OpenShift, change the version in the Dockerfile or provide the argument with the proper version so it overrides the default value.

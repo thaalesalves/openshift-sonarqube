@@ -39,4 +39,4 @@ services:
       dockerfile: Dockerfile
       context: ./
       args:
-        - SONARQUBE_VERSION=9.4.0.54424
+        - SONARQUBE_VERSION=8.9.9.56886
