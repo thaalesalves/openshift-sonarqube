@@ -6,6 +6,7 @@ services:
     container_name: postgresql
     image: docker.io/postgres:10.13
     hostname: postgresql
+    restart: always
     ports:
       - '5432:5432'
     environment:
@@ -21,6 +22,7 @@ services:
       timeout: 5s
       retries: 5
   sonarqube:
+    restart: always
     depends_on:
       postgresql:
         condition: service_healthy
