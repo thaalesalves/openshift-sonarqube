@@ -1,4 +1,4 @@
-FROM tgagor/centos:stream9
+FROM redhat/ubi8:8.7
 
 LABEL maintainer="Thales Alves <thales@thalesalv.es>" \
     io.k8s.description="A SonarQube image optimized for OpenShift" \
